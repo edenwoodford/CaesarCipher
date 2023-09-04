@@ -5,10 +5,11 @@ import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CaeserCipher from './CaeserCipher';
+import registerRootComponent from 'expo/build/launch/registerRootComponent';
 
+const Stack = createNativeStackNavigator();
 export default function App() {
 
-  const Stack = createNativeStackNavigator();
   return (
   <NavigationContainer>
   <Stack.Navigator>
