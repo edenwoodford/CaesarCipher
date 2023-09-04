@@ -17,7 +17,6 @@ export default function CaeserCipher() {
       letter += alphabet[offset];
     }
   }
-
   function encode(message) {
   let result = '';
     message = message.toLowerCase();
@@ -34,7 +33,7 @@ export default function CaeserCipher() {
     for (let i = 0; i < message.length; i++) {
       let index = letter.indexOf(message[i]);
       result += alphabet[index];
-    }
+    } 
     return result;
   }
 
@@ -65,6 +64,12 @@ export default function CaeserCipher() {
         <Text style={{ color: 'white' }}> . . </Text>
         <Button title="Decrypt" onPress={() => cipher(parseInt(key, 10), -1)} /></View>
       <Text>Results here:  {ciphered}</Text>
+      <View style={styles.container}>
+      <Button
+        title="See History"
+        onPress={() => navigation.navigate('History')}
+      />
+    </View>
     </View>
   );
 }
