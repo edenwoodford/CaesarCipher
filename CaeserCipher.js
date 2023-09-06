@@ -1,7 +1,7 @@
 import { styles } from './style.js';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
-
+import { useDispatch } from 'react-redux';
 export default function CaeserCipher() {
 
   const [input, setInput] = useState('');
@@ -67,7 +67,6 @@ export default function CaeserCipher() {
       <View style={styles.container}>
       <Button
         title="See History"
-        onPress={() => navigation.navigate('History')}
       />
     </View>
     </View>

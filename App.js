@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
+//App.js
 import React, { useState } from 'react';
 import { styles } from './style.js';
-import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CaeserCipher from './CaeserCipher';
-import registerRootComponent from 'expo/build/launch/registerRootComponent';
+import CaeserCipher from './CaeserCipher.js';
+import History from './history.js';
+import { store } from './store.js';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,11 +18,11 @@ export default function App() {
   component={CaeserCipher}
   options={{title: 'Page 1'}}
   />
-  {/* <Stack.Screen
+  <Stack.Screen
   name="History"
   component={History}
-  options={{title: 'Question History'}}
-  /> */}
+  options={{title: 'Page 2'}}
+  />
   </Stack.Navigator>
   </NavigationContainer>
   );
