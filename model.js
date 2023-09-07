@@ -10,5 +10,5 @@ const statsSlice = createSlice({
   },
 });
 
-export const { setKey } = statsSlice.actions;
+export const { addCypher } = statsSlice.actions;
 export default statsSlice.reducer;

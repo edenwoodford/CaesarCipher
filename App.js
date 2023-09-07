@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { styles } from './style.js';
 import {NavigationContainer} from '@react-navigation/native';
@@ -26,7 +25,7 @@ export default function App() {
   name="History"
   component={History}
   options={{title: 'Page 2'}}
-  /> 
+  />
   </Stack.Navigator>
   </NavigationContainer>
   </Provider>

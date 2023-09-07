@@ -3,17 +3,20 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import addCypher from './model.js';
-import { addHistory } from './model2.js';
 
-export default function CaeserCipher({navigation}) {
+export default function CaeserCipher({navigation }) {
 
   const [input, setInput] = useState('');
   const [key, setKey] = useState('');
   const [ciphered, setCiphered] = useState('');
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch ();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
+  
+  const HistoryButton = () => {
+    navigation.navigate('History');
+  };
 
   function shift(n) {
     for (let i = 0; i < alphabet.length; i++) {
@@ -28,8 +31,8 @@ export default function CaeserCipher({navigation}) {
       let index = alphabet.indexOf(message[i]);
       result += letter[index];
     }
-    dispatch(addCypher({ result: result, input, ciphered }));
-  return result;
+    dispatch (addCypher({result: result, input, ciphered}))
+    return result;
   }
 
   function decode(message) {
@@ -39,8 +42,8 @@ export default function CaeserCipher({navigation}) {
       let index = letter.indexOf(message[i]);
       result += alphabet[index];
     } 
-    dispatch(addCypher({ result: result, input, ciphered }));
-  return result;
+    dispatch (addCypher({result: result, input, ciphered}))
+    return result;
   }
 
   function cipher(key, direction) {
@@ -48,26 +51,14 @@ export default function CaeserCipher({navigation}) {
     shift(key);
     if (direction === 1) {
       setCiphered(encode(input));
+
     } else if (direction === -1) {
-      result =(decode(input));
-    }setCiphered(result);
+      setCiphered(decode(input));
+    }
+    else {
+      
+    }}
 
-    dispatch(addCypher({
-        result: result,
-        input,
-        ciphered: result,
-      })
-    );
-  dispatch(addHistory({
-        originalMessage: input,
-        encryptionKey: key,
-        result: result,
-      })
-    );
-  }
-
-    const HistoryButton = () => 
-    navigation.navigate ('History');
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 50 }}>Caesar Cipher Machine</Text>
@@ -86,9 +77,9 @@ export default function CaeserCipher({navigation}) {
       <Text>Results here:  {ciphered}</Text>
       <View style={styles.container}>
       <Button
-        title="See History" onPress= {HistoryButton}
+        title="See History" onPress={HistoryButton}
       />
     </View>
     </View>
   );
-}
+  }
