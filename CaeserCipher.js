@@ -13,7 +13,7 @@ export default function CaeserCipher({navigation }) {
   const dispatch = useDispatch ();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
-  
+
   const HistoryButton = () => {
     navigation.navigate('History');
   };
@@ -26,25 +26,23 @@ export default function CaeserCipher({navigation }) {
   }
   function encode(message) {
   let result = '';
-    message = message.toLowerCase();
-    for (let i = 0; i < message.length; i++) {
-      let index = alphabet.indexOf(message[i]);
-      result += letter[index];
-    }
-    dispatch (addCypher({result: result, input, ciphered}))
-    return result;
-  }
-
-  function decode(message) {
-    let result = '';
   message = message.toLowerCase();
-    for (let i = 0; i < message.length; i++) {
-      let index = letter.indexOf(message[i]);
-      result += alphabet[index];
-    } 
-    dispatch (addCypher({result: result, input, ciphered}))
-    return result;
+  for (let i = 0; i < message.length; i++) {
+    let index = alphabet.indexOf(message[i]);
+    result += letter[index];
   }
+  return result; 
+}
+
+function decode(message) {
+  let result = '';
+  message = message.toLowerCase();
+  for (let i = 0; i < message.length; i++) {
+    let index = letter.indexOf(message[i]);
+    result += alphabet[index];
+  }
+  return result; 
+}
 
   function cipher(key, direction) {
     letter = '';
