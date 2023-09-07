@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import addCypher from './model.js';
 
-export default function CaeserCipher({navigation }) {
+export default function CaeserCipher({route, navigation }) {
 
   const [input, setInput] = useState('');
   const [key, setKey] = useState('');
@@ -45,16 +45,18 @@ function decode(message) {
   return result; 
 }
 
-  function cipher(key, direction) {
-    letter = '';
-    shift(key);
-    if (direction === 1) {
-      setCiphered(encode(input));
-
-    } else if (direction === -1) {
-      setCiphered(decode(input));
-    }
-    else {
+function cipher(key, direction) {
+  letter = '';
+  shift(key);
+  if (direction === 1) {
+    const encryptedMessage = encode(input);
+    setCiphered(encryptedMessage);
+    dispatch(addHistory({ originalMessage: input, encryptionKey: key, result: encryptedMessage }));
+  } else if (direction === -1) {
+    const decryptedMessage = decode(input);
+    setCiphered(decryptedMessage);
+    dispatch(addHistory({ originalMessage: input, encryptionKey: key, result: decryptedMessage }));
+  } else {
       
     }}
 
@@ -76,7 +78,11 @@ function decode(message) {
       <Text>Results here:  {ciphered}</Text>
       <View style={styles.container}>
       <Button
-        title="See History" onPress={HistoryButton}
+        title="See History" onPress={() =>
+          HistoryButton({
+            originalMessage: input,encryptionKey: key, result: ciphered,
+          })
+        }
       />
     </View>
     </View>
