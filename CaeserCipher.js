@@ -39,6 +39,7 @@ function decode(message) {
   message = message.toLowerCase();
   for (let i = 0; i < message.length; i++) {
     let index = letter.indexOf(message[i]);
+    let originalIndex = (index - key + alphabet.length) % alphabet.length;
     result += alphabet[index];
   }
   return result; 
