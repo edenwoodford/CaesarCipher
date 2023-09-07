@@ -1,4 +1,4 @@
-//model2.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const historySlice = createSlice({

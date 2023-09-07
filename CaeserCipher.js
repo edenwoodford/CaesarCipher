@@ -2,12 +2,15 @@ import { styles } from './style.js';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
-export default function CaeserCipher() {
+import addCypher from './model.js';
+
+export default function CaeserCipher({navigation}) {
 
   const [input, setInput] = useState('');
   const [key, setKey] = useState('');
   const [ciphered, setCiphered] = useState('');
 
+  const dispactch = useDispatch();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
 
@@ -24,6 +27,7 @@ export default function CaeserCipher() {
       let index = alphabet.indexOf(message[i]);
       result += letter[index];
     }
+    dispatch (addCypher({result: result, input, ciphered}))
     return result;
   }
 
@@ -34,6 +38,7 @@ export default function CaeserCipher() {
       let index = letter.indexOf(message[i]);
       result += alphabet[index];
     } 
+    dispatch (addCypher({result: result, input, ciphered}))
     return result;
   }
 
@@ -48,6 +53,8 @@ export default function CaeserCipher() {
     else {
     }}
 
+    const HistoryButton = () => 
+    navigation.navigate ('History');
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 50 }}>Caesar Cipher Machine</Text>
@@ -66,7 +73,7 @@ export default function CaeserCipher() {
       <Text>Results here:  {ciphered}</Text>
       <View style={styles.container}>
       <Button
-        title="See History"
+        title="See History" onPress= {HistoryButton}
       />
     </View>
     </View>
