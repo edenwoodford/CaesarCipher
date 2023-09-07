@@ -15,7 +15,11 @@ export default function CaeserCipher({route, navigation }) {
   let letter = '';
 
   const HistoryButton = () => {
-    navigation.navigate('History');
+    navigation.navigate('History', {
+      originalMessage: input,
+      encryptionKey: key,
+      result: ciphered,
+    });
   };
 
   function shift(n) {
@@ -78,12 +82,10 @@ function cipher(key, direction) {
       <Text>Results here:  {ciphered}</Text>
       <View style={styles.container}>
       <Button
-        title="See History" onPress={() =>
-          HistoryButton({
-            originalMessage: input,encryptionKey: key, result: ciphered,
-          })
-        }
-      />
+  title="See History"
+  onPress={() => HistoryButton()
+  }
+/>
     </View>
     </View>
   );
