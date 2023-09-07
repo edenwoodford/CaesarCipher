@@ -5,11 +5,11 @@ const historySlice = createSlice({
   name: 'history',
   initialState: [],
   reducers: {
-    addQuestion: (state, action) => {
+    addHistory: (state, action) => {
     state.value.push(action.payload)
     }
      },
 });
 
-export const { addQuestion} = historySlice.actions;
+export const { addHistory} = historySlice.actions;
 export default historySlice.reducer;
