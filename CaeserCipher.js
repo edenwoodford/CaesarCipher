@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import addCypher from './model.js';
+import { addHistory } from './model2.js';
 
 export default function CaeserCipher({navigation}) {
 
   const [input, setInput] = useState('');
   const [key, setKey] = useState('');
   const [ciphered, setCiphered] = useState('');
+  const dispatch = useDispatch();
 
-  const dispactch = useDispatch();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
 
@@ -27,8 +28,8 @@ export default function CaeserCipher({navigation}) {
       let index = alphabet.indexOf(message[i]);
       result += letter[index];
     }
-    dispatch (addCypher({result: result, input, ciphered}))
-    return result;
+    dispatch(addCypher({ result: result, input, ciphered }));
+  return result;
   }
 
   function decode(message) {
@@ -38,8 +39,8 @@ export default function CaeserCipher({navigation}) {
       let index = letter.indexOf(message[i]);
       result += alphabet[index];
     } 
-    dispatch (addCypher({result: result, input, ciphered}))
-    return result;
+    dispatch(addCypher({ result: result, input, ciphered }));
+  return result;
   }
 
   function cipher(key, direction) {
@@ -48,10 +49,22 @@ export default function CaeserCipher({navigation}) {
     if (direction === 1) {
       setCiphered(encode(input));
     } else if (direction === -1) {
-      setCiphered(decode(input));
-    }
-    else {
-    }}
+      result =(decode(input));
+    }setCiphered(result);
+
+    dispatch(addCypher({
+        result: result,
+        input,
+        ciphered: result,
+      })
+    );
+  dispatch(addHistory({
+        originalMessage: input,
+        encryptionKey: key,
+        result: result,
+      })
+    );
+  }
 
     const HistoryButton = () => 
     navigation.navigate ('History');
