@@ -1,24 +1,25 @@
 import { styles } from './style.js';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import addCypher from './model.js';
-
+import { addHistory } from './model2.js';
 export default function CaeserCipher({route, navigation }) {
 
   const [input, setInput] = useState('');
   const [key, setKey] = useState('');
   const [ciphered, setCiphered] = useState('');
+  const history = useSelector((state) => state.history)
+
 
   const dispatch = useDispatch ();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
 
-  const HistoryButton = () => {
+  const HistoryButton = () => {console.log(history)
     navigation.navigate('History', {
-      originalMessage: input,
-      encryptionKey: key,
-      result: ciphered,
+      history:history
+      
     });
   };
 

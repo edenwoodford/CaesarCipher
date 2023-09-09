@@ -1,22 +1,41 @@
-import { StyleSheet, Text,Button,View } from 'react-native';
 import React from 'react';
-import { styles } from './style.js';
+import { StyleSheet, Text, Button, View, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 export default function History({ route, navigation }) {
+  const cipherHistory = useSelector((state) => state.history);
 
   const goHome = () => {
     navigation.navigate('Home');
   };
 
+  const QuestionView = ({ item, index }) => (
+    <View>
+      <Text>Original Message: {item.originalMessage}</Text>
+      <Text>Encryption Key: {item.encryptionKey}</Text>
+      <Text>Result: {item.result}</Text>
+    </View>
+  );
+
   return (
     <View>
       <Button title="Home" onPress={goHome} />
-      <View style= {styles.container}>
-        <Text> Original Message: {route.params.originalMessage} </Text>
-        <Text> Encryption Key: {route.params.encryptionKey} </Text>
-        <Text> Result: {route.params.result} </Text>
+      <View style={styles.container}>
+        <Text>History of Questions</Text>
+        <FlatList
+          data={cipherHistory}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={QuestionView}
+        />
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

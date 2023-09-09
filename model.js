@@ -5,7 +5,7 @@ const statsSlice = createSlice({
   initialState: 0,
   reducers: {
     addCypher: (state, action) => {
-        state.push(action.payload)
+        state.value.push(action.payload)
     }
   },
 });
