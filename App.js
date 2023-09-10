@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CaeserCipher from './CaeserCipher.js';
 import History from './history.js';
+import MessageDetail from './messageDetail.js';
 import { store } from './store.js';
 import {Provider} from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react'
@@ -31,6 +32,8 @@ export default function App() {
               component={History}
               options={{ title: 'Page 2' }}
             />
+            <Stack.Screen name= "MessageDetail" component = {MessageDetail}
+            options = {{title: "Page 3"}} />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
