@@ -1,18 +1,29 @@
 import React from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
+import {deleteHistory} from './model2';
 export default function MessageDetail({route,navigation }) {
   const {message} = route.params;
   const dispatch = useDispatch();
-  const deleteButton = () =>
-  Alert.alert('Deletion', 'Are you sure you want to delete this? This is permanent.', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel was pressed'),
-      style: 'cancel',
-    },
-    {text: 'Delete', onPress: () => console.log('Delete was Pressed')},
-  ]);
+  const goBack = () => {
+    navigation.navigate('History');
+  };
+  const deleteButton = () => {
+    Alert.alert('Deletion','Are you sure you want to delete this? This is permanent.',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel was pressed'),
+          style: 'cancel',
+        },{
+          text: 'Delete',
+          onPress: () => {
+            dispatch(deleteHistory({message}));
+            navigation.goBack();
+          },
+        },]
+    );
+  };
 
 
   return (
