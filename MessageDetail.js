@@ -1,29 +1,20 @@
 import React from 'react';
-import { View, Text, Button, Image,Flatlist, Alert } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 export default function MessageDetail({route,navigation }) {
   const {message} = route.params;
   const dispatch = useDispatch();
-  const deleteButton = () => {
-    Alert.alert(
-      'Confirm Delete',
-      'Are you sure you want to delete this item? This action cannot be undone.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Delete',
-          onPress: () => {
-            dispatch(deleteHistory(message));
-            navigation.goBack(); 
-          },
-          style: 'destructive',
-        },
-      ]
-    );
-  };
+  const deleteButton = () =>
+  Alert.alert('Deletion', 'Are you sure you want to delete this? This is permanent.', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel was pressed'),
+      style: 'cancel',
+    },
+    {text: 'Delete', onPress: () => console.log('Delete was Pressed')},
+  ]);
+
+
   return (
     <View>
       <Text>Original Message: {message.originalMessage}</Text>

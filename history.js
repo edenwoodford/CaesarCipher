@@ -16,7 +16,9 @@ export default function History({ route, navigation }) {
       <Text>Result: {item.result}</Text>
       <Button
         title="View Details"
-        onPress={() => {
+        onPress={() => 
+          
+          {
           navigation.navigate('MessageDetail', { message: item });
         }}
       />
@@ -26,7 +28,7 @@ export default function History({ route, navigation }) {
   return (
     <View>
       <Button title="Home" onPress={goHome} />
-      <View style={styles.container}>
+      <View >
         <Text>History of Questions</Text>
         <FlatList
           data={cipherHistory}
