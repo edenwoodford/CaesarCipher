@@ -1,16 +1,39 @@
-import React from 'react';
-import { Text, Button, View, FlatList } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Text, Button, View, FlatList, CheckBox } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteHistory } from './model2';
+
 
 export default function History({ route, navigation }) {
   const cipherHistory = useSelector((state) => state.history);
-
+  const dispatch = useDispatch();
   const goHome = () => {
     navigation.navigate('Home');
   };
+  const [selected, setSelected] = useState([]);
 
+  const clickBox = (item) => {
+    if (selected.includes(item)) {
+      setSelected(selected.filter((selectedItem) => selectedItem !== item));
+    } else {
+      setSelected([...selected, item]);
+    }
+  };
+
+  const deletingOption = () => {
+    if (selected.length === 0) {
+      return;
+    }
+    selected.forEach((item) => {
+      dispatch(deleteHistory({ message: item }));
+    });
+    setSelected([]);
+  };
   const QuestionView = ({ item, index }) => (
     <View>
+      <CheckBox
+      value= {selected.includes(item)}
+      onValueChange={() => clickBox(item)} />
       <Text>Original Message: {item.originalMessage}</Text>
       <Text>Encryption Key: {item.encryptionKey}</Text>
       <Text>Result: {item.result}</Text>
@@ -28,6 +51,7 @@ export default function History({ route, navigation }) {
   return (
     <View >
       <Button title="Home" onPress={goHome} />
+      <Button title ="delete selected" onPress= {deletingOption} />
       <View >
         <Text>History of Questions</Text>
         <FlatList
