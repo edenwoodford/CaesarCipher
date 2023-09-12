@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Button, View, FlatList } from 'react-native';
+import { Text, Button, View, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 export default function History({ route, navigation }) {
@@ -26,7 +26,7 @@ export default function History({ route, navigation }) {
   );
 
   return (
-    <View>
+    <View >
       <Button title="Home" onPress={goHome} />
       <View >
         <Text>History of Questions</Text>
@@ -40,10 +40,3 @@ export default function History({ route, navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
