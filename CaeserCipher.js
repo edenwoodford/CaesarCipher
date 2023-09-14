@@ -108,9 +108,13 @@ function cipher(key, direction) {
         <Picker.Item label="25" value="25" />
         </Picker>
       <View style={{ flexDirection: 'row', marginTop: 20 }}>
-        <Button title="Encrypt" onPress={() => cipher(parseInt(key, 10), 1)} />
+        <AntDesign.Button name="forward" onPress={() => cipher(parseInt(key, 10), 1)} >
+          Encrypt
+        </AntDesign.Button>
         <Text style={{ color: 'white' }}> . . </Text>
-        <Button title="Decrypt" onPress={() => cipher(parseInt(key, 10), -1)} />
+        <AntDesign.Button name="banckward" onPress={() => cipher(parseInt(key, 10), -1)}>
+          Decrypt
+          </AntDesign.Button>
         </View>
       <Text>Results here:  {ciphered}</Text>
       <View>

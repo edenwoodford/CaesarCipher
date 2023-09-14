@@ -5,6 +5,7 @@ import { deleteHistory } from './model2';
 import { Entypo } from '@expo/vector-icons'; 
 
 
+
 export default function History({ route, navigation }) {
   const cipherHistory = useSelector((state) => state.history);
   const dispatch = useDispatch();
