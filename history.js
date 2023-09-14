@@ -52,11 +52,11 @@ export default function History({ route, navigation }) {
   return (
     <View >
       <Button title="Home" onPress={goHome} />
-      <Entypo.Button name="trash" color="black" onPress={deletingOption}>
+      <Entypo.Button name="trash" onPress={deletingOption}>
         Delete Selected
       </Entypo.Button>
       <View>
-        <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 40 }}> History of Questions </Text>
+        <Text style={{ textAlign: 'center', fontWeight: 'bold', color: 'blue', fontSize: 40 }}> History of Questions </Text>
         <FlatList
           data={cipherHistory}
           keyExtractor={(item, index) => index.toString()}
