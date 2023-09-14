@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Picker, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHistory } from './model2.js';
+import { AntDesign } from '@expo/vector-icons';
+
 export default function CaeserCipher({route, navigation }) {
 
   const [input, setInput] = useState('');
@@ -14,6 +16,9 @@ export default function CaeserCipher({route, navigation }) {
   const dispatch = useDispatch ();
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let letter = '';
+
+
+
   const HistoryButton = () => {console.log(history)
     navigation.navigate('History', {
       history:history
@@ -108,12 +113,10 @@ function cipher(key, direction) {
         <Button title="Decrypt" onPress={() => cipher(parseInt(key, 10), -1)} />
         </View>
       <Text>Results here:  {ciphered}</Text>
-      <View style={styles.container}>
-      <Button
-  title="See History"
-  onPress={() => HistoryButton()
-  }
-/>
+      <View>
+  <AntDesign.Button name="book" title="See History" onPress={() => HistoryButton()} >
+    See History
+    </AntDesign.Button>
     </View>
     </View>
   );
