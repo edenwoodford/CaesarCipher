@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, Button, View, FlatList, CheckBox } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteHistory } from './model2';
+import { Entypo } from '@expo/vector-icons'; 
 
 
 export default function History({ route, navigation }) {
@@ -51,9 +52,11 @@ export default function History({ route, navigation }) {
   return (
     <View >
       <Button title="Home" onPress={goHome} />
-      <Button title ="delete selected" onPress= {deletingOption} />
-      <View >
-        <Text>History of Questions</Text>
+      <Entypo.Button name="trash" color="black" onPress={deletingOption}>
+        Delete Selected
+      </Entypo.Button>
+      <View>
+        <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 40 }}> History of Questions </Text>
         <FlatList
           data={cipherHistory}
           keyExtractor={(item, index) => index.toString()}
