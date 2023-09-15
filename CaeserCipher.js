@@ -19,7 +19,7 @@ export default function CaeserCipher({route, navigation }) {
 
 
 
-  const HistoryButton = () => {console.log(history)
+  const HistoryButton = () => {
     navigation.navigate('History', {
       history:history
       
@@ -111,10 +111,6 @@ function cipher(key, direction) {
         <AntDesign.Button name="forward" onPress={() => cipher(parseInt(key, 10), 1)} >
           Encrypt
         </AntDesign.Button>
-        <Text style={{ color: 'white' }}> . . </Text>
-        <AntDesign.Button name="banckward" onPress={() => cipher(parseInt(key, 10), -1)}>
-          Decrypt
-          </AntDesign.Button>
         </View>
       <Text>Results here:  {ciphered}</Text>
       <View>

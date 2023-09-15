@@ -5,7 +5,6 @@ import { deleteHistory } from './model2';
 import { Entypo } from '@expo/vector-icons'; 
 
 
-
 export default function History({ route, navigation }) {
   const cipherHistory = useSelector((state) => state.history);
   const dispatch = useDispatch();
@@ -36,13 +35,11 @@ export default function History({ route, navigation }) {
       <CheckBox
       value= {selected.includes(item)}
       onValueChange={() => clickBox(item)} />
-      <Text>Original Message: {item.originalMessage}</Text>
-      <Text>Encryption Key: {item.encryptionKey}</Text>
       <Text>Result: {item.result}</Text>
       <Button
         title="View Details"
         onPress={() => 
-          
+
           {
           navigation.navigate('MessageDetail', { message: item });
         }}
