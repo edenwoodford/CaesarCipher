@@ -3,11 +3,15 @@ import { View, Text, Button, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import {deleteHistory} from './model2';
 import { AntDesign } from '@expo/vector-icons';
+
 export default function MessageDetail({route,navigation }) {
   const {message} = route.params;
   const dispatch = useDispatch();
   const goBack = () => {
     navigation.navigate('History');
+
+
+
   };
   const deleteButton = () => {
     Alert.alert('Deletion','Are you sure you want to delete this? This is permanent.',
@@ -35,6 +39,8 @@ export default function MessageDetail({route,navigation }) {
      <AntDesign.Button name="deleteuser" title="Delete" onPress={deleteButton} > 
      delete
      </AntDesign.Button>
+     <AntDesign.Button name="banckward"  > Decrypt
+  </AntDesign.Button>
     </View>
   );
 }
