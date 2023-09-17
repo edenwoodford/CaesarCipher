@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-   "userInterfaceStyle": "light",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -26,6 +26,15 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler" : "metro"
-    }
+    },
+    "plugins": [
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Caeser Cipher to use your location."
+        }
+      ]
+    ]
   }
 }

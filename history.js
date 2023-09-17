@@ -35,7 +35,7 @@ export default function History({ route, navigation }) {
       <CheckBox
       value= {selected.includes(item)}
       onValueChange={() => clickBox(item)} />
-      <Text>Result: {item.result}</Text>
+      <Text>Encrypted Text: {item.result}</Text>
       <Button
         title="View Details"
         onPress={() => 
