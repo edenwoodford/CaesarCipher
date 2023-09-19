@@ -53,6 +53,7 @@ export default function MessageDetail({ route, navigation }) {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Button title="Decrypt" />
         <Button title="Start Tracking" onPress={startTracking} />
+        <Button title= "Stop Tracking" onPress = {stopTracking}/>
       </View>
     </View>
   );
